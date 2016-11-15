@@ -1,0 +1,7 @@
+#ignore vi/vim temperate file
+*.sw*
+
+#ignore idea files
+.idea
+*.iml
+
