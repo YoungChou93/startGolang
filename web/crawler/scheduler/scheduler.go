@@ -1,11 +1,8 @@
 package scheduler
 
-import "container/list"
-type Scheduler struct {
-	queue *list.List
-}
+import "github.com/YoungZhou93/startGolang/web/crawler/common/crawler_resquest"
 
-func NewScheduler() *Scheduler {
-	queue := list.New()
-	return &Scheduler{queue: queue}
+type Scheduler interface {
+	PushBack(request * crawler_request.CrawlerRequest)
+	PopFront()(request * crawler_request.CrawlerRequest)
 }
