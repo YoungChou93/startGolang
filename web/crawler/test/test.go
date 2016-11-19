@@ -35,7 +35,7 @@ func Spy(url string,number int) {
 }
 
 func main(){
-	for i:=0;i<1000;i++ {
+	for i:=0;i<20;i++ {
 		Spy("http://zhouyangalan.com.cn",i)
 	}
 }

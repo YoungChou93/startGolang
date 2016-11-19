@@ -14,7 +14,7 @@ type CrawlerRequest struct {
 }
 
 func NewCrawlerRequest(url string,method string)*CrawlerRequest{
-	return CrawlerRequest{url,method}
+	return &CrawlerRequest{url,method}
 }
 
 func (this *CrawlerRequest)GetUrl()string{
