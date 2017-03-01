@@ -13,6 +13,7 @@ func NewOutputerPrint() *OutputerPrint {
 }
 
 func (this *OutputerPrint) Output(page *page.Page) {
+	fmt.Println("开始输出")
 	fmt.Print("Url:")
 	fmt.Println(page.GetRequest().GetUrl())
 	fmt.Print("Header:")

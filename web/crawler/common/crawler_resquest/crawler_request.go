@@ -11,12 +11,23 @@ type CrawlerRequest struct {
 	//Post提交数据
 	//PostData string
 
+	//标签
+	Label string
+
 }
 
 func NewCrawlerRequest(url string,method string)*CrawlerRequest{
-	return &CrawlerRequest{url,method}
+	return &CrawlerRequest{url,method,""}
 }
 
 func (this *CrawlerRequest)GetUrl()string{
 	return this.Url
+}
+
+func (this *CrawlerRequest)SetLabel(label string){
+	 this.Label=label
+}
+
+func (this *CrawlerRequest)GetLabel()string{
+	return this.Label
 }

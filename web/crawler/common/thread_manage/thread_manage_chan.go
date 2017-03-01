@@ -8,7 +8,6 @@ type ChanThreadManager struct {
 func NewChanThreadManager(total uint)*ChanThreadManager{
 	mc := make(chan uint, total)
 	return &ChanThreadManager{mc:mc,total:total}
-
 }
 
 
@@ -22,7 +21,6 @@ func (this *ChanThreadManager)Free(){
 
 func (this *ChanThreadManager)Total()uint{
 	return this.total
-
 }
 
 func (this *ChanThreadManager)Left()uint{

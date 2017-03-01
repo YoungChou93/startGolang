@@ -4,6 +4,9 @@ package page
 import (
     "net/http"
     "github.com/YoungZhou93/startGolang/web/crawler/common/crawler_resquest"
+    "github.com/PuerkitoBio/goquery"
+    "strings"
+    "github.com/hu17889/go_spider/core/common/mlog"
 )
 
 type Page struct {
@@ -13,6 +16,8 @@ type Page struct {
 
     request *crawler_request.CrawlerRequest
     body string
+
+    docParser *goquery.Document
 
     header  http.Header
     cookies []*http.Cookie
@@ -24,8 +29,6 @@ func NewPage(request *crawler_request.CrawlerRequest)*Page{
     return &Page{request:request}
 
 }
-
-
 
 func (this *Page) SetHeader(header http.Header) {
     this.header = header
@@ -71,6 +74,10 @@ func (this *Page) AddTargetRequest(url string) *Page {
     return this
 }
 
+func (this *Page) GetTargetRequests() []*crawler_request.CrawlerRequest {
+    return this.nextRequests
+}
+
 func (this *Page) AddTargetRequests(urls []string, respType string) *Page {
     for _, url := range urls {
         this.AddTargetRequest(url)
@@ -88,6 +95,25 @@ func (this *Page) GetBodyStr() string {
     return this.body
 }
 
+func (this *Page) SetHtmlParser(doc *goquery.Document) *Page {
+    this.docParser = doc
+    return this
+}
 
+func (this *Page) GetHtmlParser() *goquery.Document {
+    return this.docParser
+}
+
+
+func (this *Page) ResetHtmlParser() *goquery.Document {
+    r := strings.NewReader(this.body)
+    var err error
+    this.docParser, err = goquery.NewDocumentFromReader(r)
+    if err != nil {
+        mlog.LogInst().LogError(err.Error())
+        panic(err.Error())
+    }
+    return this.docParser
+}
 
 

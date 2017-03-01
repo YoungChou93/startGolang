@@ -6,5 +6,6 @@ import (
 
 type PageAnalyzer interface {
 	Analyze(page *page.Page)
+	AnalyzeFinsh()
 }
 
